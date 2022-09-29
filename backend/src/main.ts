@@ -20,7 +20,7 @@ async function bootstrap(): Promise<void> {
         AppModule,
         adapter,
     );
-    // app.register(helmet);
+    app.register(helmet);
     app.register(import('@fastify/cors'));
     app.register(fastifyTRPCPlugin, {
         prefix: '/trpc',
