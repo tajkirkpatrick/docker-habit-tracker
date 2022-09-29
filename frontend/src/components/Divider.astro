@@ -1,0 +1,13 @@
+---
+export interface Props {
+    text: string;
+}
+
+const { text } = Astro.props as Props;
+---
+
+<div
+    class="w-full my-4 flex flex-col border-opacity-50 text-secondary border-secondary"
+>
+    <div class="divider">{text}</div>
+</div>
