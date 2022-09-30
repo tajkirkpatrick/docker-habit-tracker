@@ -1,6 +1,14 @@
 {
-    "extends": "astro/tsconfigs/strict",
+    // "extends": "astro/tsconfigs/strict",
     "compilerOptions": {
+        "declaration": true,
+        "emitDeclarationOnly": true,
+        "strict": true,
+        "moduleResolution": "node",
+        "esModuleInterop": true,
+        "skipLibCheck": true,
+        "forceConsistentCasingInFileNames": true,
+        // For SolidJS
         "jsx": "preserve",
         "jsxImportSource": "solid-js"
     }

@@ -1,5 +1,4 @@
 import { createMemo, For, Suspense, ErrorBoundary } from 'solid-js';
-
 import Card from './Card';
 import type { Habit } from '../scripts/types';
 

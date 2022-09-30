@@ -1,8 +1,7 @@
 import { createSignal, Match, Switch, createUniqueId } from 'solid-js';
-import axios from 'axios';
+import { createTRPCProxyClient, httpBatchLink } from '@trpc/client';
 import type { Habit } from '../scripts/types';
 import type { AppRouter } from '../../../backend/src/trpc/router';
-import { createTRPCProxyClient, httpBatchLink } from '@trpc/client';
 
 interface CardProps {
     habit: Habit;
@@ -11,7 +10,7 @@ interface CardProps {
 const client = createTRPCProxyClient<AppRouter>({
     links: [
         httpBatchLink({
-            url: 'http://192.168.1.178:5050/trpc',
+            url: 'http://localhost:3001/trpc',
         }),
     ],
 });
@@ -24,10 +23,6 @@ const Card = (props: CardProps) => {
         if (mutation) {
             location.reload();
         }
-        // await axios.delete(
-        //     `http://192.168.1.178:5050/api/habits/${props.habit._id}`,
-        // );
-        // location.reload();
     }
 
     async function submit() {

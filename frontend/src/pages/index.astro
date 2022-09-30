@@ -1,16 +1,16 @@
 ---
+import { createTRPCProxyClient, httpBatchLink } from '@trpc/client';
 import DefaultLayout from '../layouts/DefaultLayout.astro';
 import InputCard from '../components/InputCard';
 import Divider from '../components/Divider.astro';
 import CardList from '../components/CardList';
 import type { Habit } from '../scripts/types';
 import type { AppRouter } from '../../../backend/src/trpc/router';
-import { createTRPCProxyClient, httpBatchLink } from '@trpc/client';
 
 const client = createTRPCProxyClient<AppRouter>({
     links: [
         httpBatchLink({
-            url: 'http://192.168.1.178:5050/trpc',
+            url: 'http://localhost:3001/trpc',
         }),
     ],
 });
@@ -31,6 +31,6 @@ const data: Habit[] = await client.getHabits.query();
     </section>
     <section id="done">
         <Divider text={'Complete Habits'} />
-        <CardList data={data} filter={true} client:load />
+        <CardList data={data} filter={true} client:visible />
     </section>
 </DefaultLayout>
