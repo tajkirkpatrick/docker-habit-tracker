@@ -1,16 +1,29 @@
-import { createMemo, For, Suspense, ErrorBoundary } from 'solid-js';
+import {
+    createMemo,
+    For,
+    Suspense,
+    ErrorBoundary,
+    createResource,
+} from 'solid-js';
 import Card from './Card';
-import type { Habit } from '../scripts/types';
+import type { Habit } from '../types/';
 
 export interface CardListProps {
     filter: boolean;
-    data: Habit[];
 }
 
 const CardList = (props: CardListProps) => {
-    const filteredData = createMemo<Habit[]>(() =>
-        props.data!.filter((habit) => habit.completed === props.filter),
-    );
+    const fetchHabits = async () => {
+        const res = await fetch('/api/habits.json', { method: 'GET' });
+        return (await res.json()) as unknown as Habit[];
+    };
+    const [data] = createResource(fetchHabits, {
+        initialValue: [],
+    });
+
+    const filteredData = createMemo<Habit[]>(() => {
+        return data()!.filter((habit) => habit.completed === props.filter);
+    });
 
     return (
         <ErrorBoundary fallback={<p>Something went very wrong...</p>}>

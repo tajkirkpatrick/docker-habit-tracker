@@ -5,6 +5,8 @@ specifiers:
   '@fastify/cors': ^8.1.0
   '@fastify/helmet': ^10.0.0
   '@fastify/static': ^6.5.0
+  '@mgcrea/fastify-request-logger': ^0.6.1
+  '@mgcrea/pino-pretty-compact': ^0.6.0
   '@nestjs/cli': ^8.2.8
   '@nestjs/common': ^8.4.7
   '@nestjs/core': ^8.4.7
@@ -23,7 +25,6 @@ specifiers:
   '@typescript-eslint/eslint-plugin': ^5.38.1
   '@typescript-eslint/parser': ^5.38.1
   astro: ^1.4.0
-  axios: ^0.27.2
   cache-manager: ^4.1.0
   eslint: ^8.24.0
   eslint-config-prettier: ^8.5.0
@@ -54,6 +55,8 @@ dependencies:
   '@fastify/cors': 8.1.0
   '@fastify/helmet': 10.0.0
   '@fastify/static': 6.5.0
+  '@mgcrea/fastify-request-logger': 0.6.1
+  '@mgcrea/pino-pretty-compact': 0.6.0
   '@nestjs/cli': 8.2.8
   '@nestjs/common': 8.4.7_it7e5jik6ma3yteqbcjm2oa7ry
   '@nestjs/core': 8.4.7_rvglusfgyoseqzubhh6546rvkq
@@ -63,7 +66,6 @@ dependencies:
   '@trpc/client': 10.0.0-proxy-beta.9_2ohqajkj6h7dfltcjvipdvpj5m
   '@trpc/server': 10.0.0-proxy-beta.9
   astro: 1.4.0_ts-node@10.9.1
-  axios: 0.27.2
   cache-manager: 4.1.0
   html-escaper: 3.0.3
   kleur: 4.1.5
@@ -1096,6 +1098,20 @@ packages:
 
   /@ljharb/has-package-exports-patterns/0.0.2:
     resolution: {integrity: sha512-4/RWEeXDO6bocPONheFe6gX/oQdP/bEpv0oL4HqjPP5DCenBSt0mHgahppY49N0CpsaqffdwPq+TlX9CYOq2Dw==}
+    dev: false
+
+  /@mgcrea/fastify-request-logger/0.6.1:
+    resolution: {integrity: sha512-Ugz6GRTXF8ZV5Ay/XoGhoJt6V7T6nQmvevULSSwZur1q0aqF54XNC1CZFg9RNnKBXQsjPtBCmEhse5kw/3dxEw==}
+    dependencies:
+      chalk: 4.1.2
+      fastify-plugin: 3.0.1
+    dev: false
+
+  /@mgcrea/pino-pretty-compact/0.6.0:
+    resolution: {integrity: sha512-sbSTRYWJEb/vq3Rn7Kq/+p0iJRPTFDFj2GvGSo+B0rAv9zqL35pnMMqNS6YZQINjtsF8Y/1ueoFQAjH2ytQRSA==}
+    dependencies:
+      chalk: 4.1.2
+      pino-pretty: 8.1.0
     dev: false
 
   /@nestjs/cli/8.2.8:
@@ -2539,6 +2555,10 @@ packages:
   /color-name/1.1.4:
     resolution: {integrity: sha512-dOy+3AuW3a2wNbZHIuMZpTcgjGuLU/uBL/ubcZF9OXbDo8ff4O8yVp5Bf0efS8uEoYo5q4Fx7dY9OgQGXgAsQA==}
 
+  /colorette/2.0.19:
+    resolution: {integrity: sha512-3tlv/dIP7FWvj3BsbHrGLJ6l/oKh1O3TcgBqMn+yyCagOxc23fyzDS6HypQbgxWbkpDnf52p1LuR4eWDQ/K9WQ==}
+    dev: false
+
   /combined-stream/1.0.8:
     resolution: {integrity: sha512-FQN4MRfuJeHf7cBbBMJFXhKSDq+2kAArBlmRBvcvFE5BB1HZKXtSFASDhdlz9zOYwxh8lDdnvmMOe/+5cdoEdg==}
     engines: {node: '>= 0.8'}
@@ -2645,6 +2665,10 @@ packages:
   /data-uri-to-buffer/4.0.0:
     resolution: {integrity: sha512-Vr3mLBA8qWmcuschSLAOogKgQ/Jwxulv3RNE4FXnYWRGujzrRWQI4m12fQqRkwX06C0KanhLr4hK+GydchZsaA==}
     engines: {node: '>= 12'}
+    dev: false
+
+  /dateformat/4.6.3:
+    resolution: {integrity: sha512-2P0p0pFGzHS5EMnhdxQi7aJN+iMheud0UhG4dlE1DLAlvL8JHjJJTX/CSm4JXwV0Ka5nGk3zC5mcb5bUQUxxMA==}
     dev: false
 
   /debug/2.6.9:
@@ -3580,6 +3604,10 @@ packages:
       tmp: 0.0.33
     dev: false
 
+  /fast-copy/2.1.7:
+    resolution: {integrity: sha512-ozrGwyuCTAy7YgFCua8rmqmytECYk/JYAMXcswOcm0qvGoE3tPb7ivBeIHTOK2DiapBhDZgacIhzhQIKU5TCfA==}
+    dev: false
+
   /fast-decode-uri-component/1.0.1:
     resolution: {integrity: sha512-WKgKWg5eUxvRZGwW8FvfbaH7AXSh2cL+3j5fMGzUMCxWBJ3dV3a7Wz8y2f/uQ0e3B6WmodD3oS54jTQ9HVTIIg==}
     dev: false
@@ -4120,6 +4148,13 @@ packages:
   /helmet/6.0.0:
     resolution: {integrity: sha512-FO9RpR1wNJepH/GbLPQVtkE2eESglXL641p7SdyoT4LngHFJcZheHMoyUcjCZF4qpuMMO1u5q6RK0l9Ux8JBcg==}
     engines: {node: '>=14.0.0'}
+    dev: false
+
+  /help-me/4.1.0:
+    resolution: {integrity: sha512-5HMrkOks2j8Fpu2j5nTLhrBhT7VwHwELpqnSnx802ckofys5MO2SkLpgSz3dgNFHV7IYFX2igm5CM75SmuYidw==}
+    dependencies:
+      glob: 8.0.3
+      readable-stream: 3.6.0
     dev: false
 
   /hexoid/1.0.0:
@@ -4880,6 +4915,11 @@ packages:
       - supports-color
       - ts-node
     dev: true
+
+  /joycon/3.1.1:
+    resolution: {integrity: sha512-34wB/Y7MW7bzjKRjUKTa46I2Z7eV62Rkhva+KkopW7Qvv/OSWBqvkSY7vusOPrNuZcUG3tApvdVgNB8POj3SPw==}
+    engines: {node: '>=10'}
+    dev: false
 
   /js-sdsl/4.1.4:
     resolution: {integrity: sha512-Y2/yD55y5jteOAmY50JbUZYwk3CP3wnLPEZnlR1w9oKhITrBEtAxwuWKebFf8hMrPMgbYwFoWK/lH2sBkErELw==}
@@ -5780,6 +5820,10 @@ packages:
     resolution: {integrity: sha512-lgHwxlxV1qIg1Eap7LgIeoBWIMFibOjbrYPIPJZcI1mmGAI2m3lNYpK12Y+GBdPQ0U1hRwSord7GIaawz962qQ==}
     dev: false
 
+  /on-exit-leak-free/1.0.0:
+    resolution: {integrity: sha512-Ve8ubhrXRdnuCJ5bQSQpP3uaV43K1PMcOfSRC1pqHgRZommXCgsXwh08jVC5NpjwScE23BPDwDvVg4cov3mwjw==}
+    dev: false
+
   /on-exit-leak-free/2.1.0:
     resolution: {integrity: sha512-VuCaZZAjReZ3vUwgOB8LxAosIurDiAW0s13rI1YwmaP++jvcxP77AWoQvenZebpCA2m8WC1/EosPYPMjnRAp/w==}
     dev: false
@@ -6002,6 +6046,26 @@ packages:
     dependencies:
       readable-stream: 4.2.0
       split2: 4.1.0
+    dev: false
+
+  /pino-pretty/8.1.0:
+    resolution: {integrity: sha512-oKfI8qKXR2a3haHs/X8iB6QSnWLqoOGAjwxIAXem4+XOGIGNw7IKpozId1uE7j89Rj46HIfWnGbAgmQmr8+yRw==}
+    hasBin: true
+    dependencies:
+      colorette: 2.0.19
+      dateformat: 4.6.3
+      fast-copy: 2.1.7
+      fast-safe-stringify: 2.1.1
+      help-me: 4.1.0
+      joycon: 3.1.1
+      minimist: 1.2.6
+      on-exit-leak-free: 1.0.0
+      pino-abstract-transport: 1.0.0
+      pump: 3.0.0
+      readable-stream: 4.2.0
+      secure-json-parse: 2.5.0
+      sonic-boom: 3.2.0
+      strip-json-comments: 3.1.1
     dev: false
 
   /pino-std-serializers/6.0.0:
@@ -6844,7 +6908,6 @@ packages:
   /strip-json-comments/3.1.1:
     resolution: {integrity: sha512-6fPc+R4ihwqP6N/aIv2f1gMH8lOVtWQHoqC4yK6oSDVVocumAsfCqjkXnqiYMhmMwS/mEHLp7Vehlt3ql6lEig==}
     engines: {node: '>=8'}
-    dev: true
 
   /style-to-object/0.3.0:
     resolution: {integrity: sha512-CzFnRRXhzWIdItT3OmF8SQfWyahHhjq3HwcMNCNLn+N7klOOqPjMeG/4JSu77D7ypZdGvSzvkrbyeTMizz2VrA==}

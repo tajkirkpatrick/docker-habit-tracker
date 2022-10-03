@@ -10,10 +10,13 @@ export type Context = inferAsyncReturnType<typeof createContext>;
 export const t = initTRPC.context<Context>().create();
 
 let users = [{ _id: 0, name: 'Study for pnp', completed: false }];
-let count = 1;
+let count = 0;
 
 export const appRouter = t.router({
-    getHabits: t.procedure.query(() => users),
+    getHabits: t.procedure.query(() => {
+        console.log(users);
+        return users;
+    }),
     createHabit: t.procedure
         .input((val: unknown) => {
             if (typeof val === 'string') return val;
@@ -22,10 +25,10 @@ export const appRouter = t.router({
         .mutation((req) => {
             const input = req.input;
 
-            users.push({ _id: count, name: input, completed: false });
-            count++;
+            users = [...users, { _id: ++count, name: input, completed: false }];
 
-            return users[-1];
+            console.log(users);
+            return users.at(-1);
         }),
     patchHabit: t.procedure
         .input((val: unknown) => {
@@ -36,8 +39,14 @@ export const appRouter = t.router({
             const input = Number(req.input);
 
             const user = users.find((user) => user._id === input);
-            user.completed = !user.completed;
+            if (user === undefined) {
+                return new Response(JSON.stringify({ error: true }), {
+                    status: 500,
+                    statusText: 'Habit Not Found',
+                });
+            }
 
+            user.completed = !user.completed;
             return user;
         }),
     deleteHabit: t.procedure
@@ -45,16 +54,18 @@ export const appRouter = t.router({
             if (typeof val === 'string') return val;
             throw new Error(`Invalid input: ${typeof val}`);
         })
-        .query((req) => {
+        .mutation((req) => {
             const input = Number(req.input);
 
-            const deleteUserIndex = users.findIndex(
-                (user) => user._id === input,
-            );
-
-            users = users.splice(deleteUserIndex, 1);
-
-            return users;
+            const deleteIndex = users.findIndex((habit) => habit._id === input);
+            if (deleteIndex > -1) {
+                const deletedUser = users.splice(deleteIndex, 1);
+                return deletedUser;
+            }
+            return new Response(JSON.stringify({ error: true }), {
+                status: 500,
+                statusText: 'Habit Not Found',
+            });
         }),
 });
 

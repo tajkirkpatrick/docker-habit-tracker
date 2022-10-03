@@ -1,37 +1,28 @@
 import { createSignal, Match, Switch, createUniqueId } from 'solid-js';
-import { createTRPCProxyClient, httpBatchLink } from '@trpc/client';
-import type { Habit } from '../scripts/types';
-import type { AppRouter } from '../../../backend/src/trpc/router';
-
+import type { Habit } from '../types/';
 interface CardProps {
     habit: Habit;
 }
 
-const client = createTRPCProxyClient<AppRouter>({
-    links: [
-        httpBatchLink({
-            url: 'http://localhost:3001/trpc',
-        }),
-    ],
-});
-
 const Card = (props: CardProps) => {
-    async function deleteMe() {
-        const mutation = await client.deleteHabit.query(
-            props.habit._id.toString(),
-        );
-        if (mutation) {
-            location.reload();
-        }
+    async function handleDelete() {
+        await fetch('/api/habits.json', {
+            method: 'DELETE',
+            body: JSON.stringify({
+                id: props.habit._id.toString(),
+            }),
+        });
+        location.reload();
     }
 
-    async function submit() {
-        const mutation = await client.patchHabit.mutate(
-            props.habit._id.toString(),
-        );
-        if (mutation) {
-            location.reload();
-        }
+    async function handleClick() {
+        await fetch('/api/habits.json', {
+            method: 'PATCH',
+            body: JSON.stringify({
+                id: props.habit._id.toString(),
+            }),
+        });
+        location.reload();
     }
 
     const [completed] = createSignal(props.habit.completed);
@@ -64,7 +55,7 @@ const Card = (props: CardProps) => {
                             <Match when={!completed()}>
                                 <div class="flex">
                                     <button
-                                        onClick={submit}
+                                        onClick={handleClick}
                                         class="btn btn-success w-fit"
                                     >
                                         Mark Done
@@ -74,7 +65,7 @@ const Card = (props: CardProps) => {
 
                             <Match when={completed()}>
                                 <button
-                                    onClick={submit}
+                                    onClick={handleClick}
                                     class="btn btn-outline btn-warning w-fit"
                                 >
                                     Undo?
@@ -94,7 +85,7 @@ const Card = (props: CardProps) => {
                         <label
                             for={`modal-${id}`}
                             class="btn btn-info"
-                            onclick={deleteMe}
+                            onclick={handleDelete}
                         >
                             Yes
                         </label>

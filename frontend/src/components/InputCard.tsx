@@ -14,7 +14,7 @@ function InputCard() {
             return;
         }
 
-        await fetch('/api/createHabit', {
+        await fetch('/api/habits.json', {
             method: 'POST',
             body: JSON.stringify({ name: habitName() }),
         });
