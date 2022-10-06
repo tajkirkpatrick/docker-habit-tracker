@@ -18,19 +18,17 @@ FROM node:lts-alpine3.15 as backendBuilder
 
 WORKDIR /usr/src/app/build/backend
 
-COPY ["./backend/package.json", "./backend/pnpm-lock.yaml", "./backend/.npmrc", "./backend/tsconfig.json", "./"]
+COPY ["./backend/package.json", "./backend/pnpm-lock.yaml", "./"]
+
+RUN npm install -g @nestjs/cli
 
 RUN npm install -g pnpm
-
-RUN pnpm install -g @nestjs/cli
 
 RUN pnpm install
 
 COPY --from=frontendBuilder /usr/src/app/build/frontend/dist/ ./dist
 
 COPY ["./backend/", "./"]
-
-COPY ["./backend/src/body-double.js", "./node_modules/.pnpm/fastify@4.6.0/node_modules/fastify/lib/contentTypeParser.js"]
 
 RUN pnpm build
 
