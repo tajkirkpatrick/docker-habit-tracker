@@ -19,6 +19,7 @@ const adapter = new FastifyAdapter({
             target: '@mgcrea/pino-pretty-compact',
         },
     },
+    // logger: true,
 });
 
 async function bootstrap(): Promise<void> {
