@@ -2,6 +2,8 @@ lockfileVersion: 5.4
 
 specifiers:
   '@astrojs/node': ^1.1.0
+  '@fastify/cors': ^8.1.0
+  '@fastify/helmet': ^10.0.1
   '@fastify/middie': ^8.0.0
   '@fastify/static': ^6.5.0
   '@mgcrea/fastify-request-logger': ^0.6.1
@@ -35,6 +37,8 @@ specifiers:
 
 dependencies:
   '@astrojs/node': 1.1.0
+  '@fastify/cors': 8.1.0
+  '@fastify/helmet': 10.0.1
   '@fastify/middie': 8.0.0
   '@fastify/static': 6.5.0
   '@mgcrea/fastify-request-logger': 0.6.1
@@ -476,6 +480,13 @@ packages:
       fast-uri: 2.1.0
     dev: false
 
+  /@fastify/cors/8.1.0:
+    resolution: {integrity: sha512-1OmjwyxQZ8GePxa5t1Rpsn2qS56+1ouKMvZufpgJWhXtoCeM/ffA+PsNW8pyslPr4W0E27gVoFqtvHwhXW1U2w==}
+    dependencies:
+      fastify-plugin: 4.2.1
+      mnemonist: 0.39.2
+    dev: false
+
   /@fastify/deepmerge/1.1.0:
     resolution: {integrity: sha512-E8Hfdvs1bG6u0N4vN5Nty6JONUfTdOciyD5rn8KnEsLKIenvOVcr210BQR9t34PRkNyjqnMLGk3e0BsaxRdL+g==}
     dev: false
@@ -488,6 +499,13 @@ packages:
     resolution: {integrity: sha512-cTKBV2J9+u6VaKDhX7HepSfPSzw+F+TSd+k0wzifj4rG+4E5PjSFJCk19P8R6tr/72cuzgGd+mbB3jFT6lvAgw==}
     dependencies:
       fast-json-stringify: 5.4.0
+    dev: false
+
+  /@fastify/helmet/10.0.1:
+    resolution: {integrity: sha512-UW4Ip1X8sfiaQE1XU5tDYub79nMwCcsA4MCarOnHMdrODOHIkEb6RWNUcMJN2yaBPTP5dn1W/SvH2vVVA41JCg==}
+    dependencies:
+      fastify-plugin: 4.2.1
+      helmet: 6.0.0
     dev: false
 
   /@fastify/middie/8.0.0:
@@ -2663,6 +2681,11 @@ packages:
       space-separated-tokens: 2.0.1
     dev: false
 
+  /helmet/6.0.0:
+    resolution: {integrity: sha512-FO9RpR1wNJepH/GbLPQVtkE2eESglXL641p7SdyoT4LngHFJcZheHMoyUcjCZF4qpuMMO1u5q6RK0l9Ux8JBcg==}
+    engines: {node: '>=14.0.0'}
+    dev: false
+
   /help-me/4.1.0:
     resolution: {integrity: sha512-5HMrkOks2j8Fpu2j5nTLhrBhT7VwHwELpqnSnx802ckofys5MO2SkLpgSz3dgNFHV7IYFX2igm5CM75SmuYidw==}
     dependencies:
@@ -3543,6 +3566,12 @@ packages:
     resolution: {integrity: sha512-gKLcREMhtuZRwRAfqP3RFW+TK4JqApVBtOIftVgjuABpAtpxhPGaDcfvbhNvD0B8iD1oUr/txX35NjcaY6Ns/A==}
     dev: false
 
+  /mnemonist/0.39.2:
+    resolution: {integrity: sha512-n3ZCEosuMH03DVivZ9N0fcXPWiZrBLEdfSlEJ+S/mJxmk3zuo1ur0dj9URDczFyP1VS3wfiyKzqLLDXoPJ6rPA==}
+    dependencies:
+      obliterator: 2.0.4
+    dev: false
+
   /mri/1.2.0:
     resolution: {integrity: sha512-tzzskb3bG8LvYGFF/mDTpq3jpI6Q9wc3LEmBaghu+DdCssd1FakN7Bc0hVNmEyGq1bq3RgfkCb3cmQLpNPOroA==}
     engines: {node: '>=4'}
@@ -3668,6 +3697,10 @@ packages:
   /object-keys/1.1.1:
     resolution: {integrity: sha512-NuAESUOUMrlIXOfHKzD6bpPu3tYt3xvjNdRIQ+FeT0lNb4K8WR70CaDxhuNguS2XG+GjkyMwOzsN5ZktImfhLA==}
     engines: {node: '>= 0.4'}
+    dev: false
+
+  /obliterator/2.0.4:
+    resolution: {integrity: sha512-lgHwxlxV1qIg1Eap7LgIeoBWIMFibOjbrYPIPJZcI1mmGAI2m3lNYpK12Y+GBdPQ0U1hRwSord7GIaawz962qQ==}
     dev: false
 
   /on-exit-leak-free/1.0.0:

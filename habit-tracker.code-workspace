@@ -16,7 +16,7 @@
         "version": "2.0.0",
         "tasks": [
             {
-                "label": "Start AstroJS",
+                "label": "Start Fastify Server",
                 "type": "shell",
                 "command": "pnpm astro dev",
                 "group": "test",

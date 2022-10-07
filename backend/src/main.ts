@@ -19,12 +19,19 @@ const fastify = Fastify({
  */
 const start = async () => {
     try {
+        // * Helmet Security
+        await fastify.register(require('@fastify/helmet'), {
+            contentSecurityPolicy: false,
+        });
+        // * Cors
+        await fastify.register(require('@fastify/cors'));
         // * Logger
         await fastify.register(fastifyRequestLogger);
         // * Static Files
         await fastify.register(import('@fastify/static'), {
             root: path.join(__dirname, '..', 'dist/client'),
         });
+        // * tRPC API
         await fastify.register(fastifyTRPCPlugin, {
             prefix: '/trpc',
             trpcOptions: { router: appRouter, createContext },
